@@ -63,5 +63,4 @@ module NOAA
     return temps
   end
   module_function :history_weather
-
 end
