@@ -4,7 +4,7 @@ require 'haml'
 require 'mongo'
 require 'json'
 
-require '../noaa_ruby'
+require './noaa_weather'
 
 get '/:zip' do
   zip = params['zip'].to_i
