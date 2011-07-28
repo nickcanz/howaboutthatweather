@@ -13,6 +13,18 @@ body {
     font-size: 300%;
     margin-top: 5%;
     margin-left: 10%; }
+  #main h2 {
+    font-family: "Lobster", serif;
+    font-size: 200%;
+    text-align: right;
+    width: 535px; }
+    #main h2 input {
+      font-family: "Lobster";
+      font-size: 150%;
+      color: #5798f0;
+      border: none;
+      border-bottom: 1px dashed #5798f0;
+      width: 250px; }
   #main ul li {
     width: 535px;
     clear: both; }
@@ -23,9 +35,10 @@ body {
       font-size: 100%; }
   #main ul li.data {
     margin: 10px 0px;
-    border-bottom: 1px dashed #5d0015;
+    border-bottom: 1px dashed #5798f0;
     overflow: hidden; }
     #main ul li.data span.time {
+      float: left;
       font-size: 120%;
       font-family: "Tienne", serif;
       margin-left: 10%; }
