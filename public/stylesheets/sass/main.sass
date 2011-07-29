@@ -1,7 +1,11 @@
 $blue: #5798f0
+$mainfont: 'Lobster'
+$subfont: 'Tienne'
 
-html
-  width: 100%
+@mixin fontdef($font, $size)
+  font-family: $font, serif
+  font-size: $size
+
 body
   width: 100%
 #main
@@ -9,18 +13,15 @@ body
   height: 100%
   margin: 0px auto
   h1
-    font-family: 'Lobster', serif
-    font-size: 300%
+    @include fontdef($mainfont, 300%)
     margin-top: 5%
     margin-left: 10%
   h2
-    font-family: 'Lobster', serif
-    font-size: 200%
+    @include fontdef($mainfont, 200%)
     text-align: right
     width: 535px
     input
-      font-family: 'Lobster'
-      font-size: 150%
+      @include fontdef($mainfont, 150%)
       color: $blue
       border: none
       border-bottom: 1px dashed $blue
@@ -32,19 +33,16 @@ body
     li.day
       background-color: #eee
       span
-        font-family: 'Lobster', serif
-        font-size: 100%
+        @include fontdef($mainfont, 100%)
     li.data
       margin: 10px 0px
       border-bottom: 1px dashed $blue
       overflow: hidden
       span.time
+        @include fontdef($subfont, 120%)
         float: left
-        font-size: 120%
-        font-family: 'Tienne', serif
         margin-left: 10%
       span.temp
+        @include fontdef($subfont, 200%)
         float: right
         text-align: right
-        font-family: 'Tienne', serif
-        font-size: 200%
