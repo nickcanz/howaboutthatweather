@@ -1,6 +1,10 @@
 body {
   width: 100%; }
 
+canvas {
+  width: 60px;
+  height: 25px; }
+
 #main {
   width: 550px;
   height: 100%;
@@ -21,7 +25,10 @@ body {
       color: #5798f0;
       border: none;
       border-bottom: 1px dashed #5798f0;
-      width: 250px; }
+      width: 250px;
+      text-align: center; }
+    #main h2 input:focus {
+      outline: none; }
   #main ul li {
     width: 535px;
     clear: both; }
@@ -36,9 +43,7 @@ body {
     overflow: hidden; }
     #main ul li.data span.time {
       font-family: "Tienne", serif;
-      font-size: 120%;
-      float: left;
-      margin-left: 10%; }
+      font-size: 120%; }
     #main ul li.data span.temp {
       font-family: "Tienne", serif;
       font-size: 200%;
