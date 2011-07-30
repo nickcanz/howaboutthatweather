@@ -11,7 +11,7 @@
         %form{ :type => "POST", :action => "/" }
           %span &hellip; in
           %input{ :type => :text, :id => "zip", :name => "zip", 
-                  :placeholder => "Zip Code", :value => @zip }
+                  :placeholder => "     Zip Code", :value => @zip }
 
       - if @temps != nil
         %ul
@@ -26,3 +26,10 @@
               %span.time= temp[:time].strftime("%H:%M") 
               %span.temp= temp[:temp]
             - @current = temp[:time].strftime(@dateformat)
+      #footer
+        :markdown
+          Built by Nick Canzoneri, [email](canzoneri.nicholas@gmail.com) or [twitter](https://twitter.com/#!/ac3522).
+            
+          Code available on [Github](https://github.com/ac3522/howaboutthatweather). 
+            
+          Powered by [NOAA](http://www.weather.gov/forecasts/xml/rest.php).

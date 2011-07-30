@@ -11,24 +11,27 @@ canvas {
   margin: 0px auto; }
   #main h1 {
     font-family: "Lobster", serif;
-    font-size: 300%;
-    margin-top: 5%;
-    margin-left: 10%; }
+    font-size: 340%;
+    margin-top: 5%; }
   #main h2 {
     font-family: "Lobster", serif;
     font-size: 200%;
     text-align: right;
-    width: 535px; }
+    width: 535px;
+    margin-bottom: 10px; }
+    #main h2 span {
+      vertical-align: bottom; }
     #main h2 input {
       font-family: "Lobster", serif;
-      font-size: 150%;
+      font-size: 120%;
       color: #5798f0;
       border: none;
-      border-bottom: 1px dashed #5798f0;
-      width: 250px;
+      border-bottom: 1px dashed #dddddd;
+      width: 200px;
       text-align: center; }
     #main h2 input:focus {
-      outline: none; }
+      outline: none;
+      border-bottom-color: #5798f0; }
   #main ul li {
     width: 535px;
     clear: both; }
@@ -49,3 +52,10 @@ canvas {
       font-size: 200%;
       float: right;
       text-align: right; }
+  #main #footer {
+    font-family: "Tienne", serif;
+    font-size: 80%;
+    margin-top: 70px;
+    text-align: center; }
+    #main #footer a, #main #footer a:visited {
+      color: black; }

@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
+require 'rdiscount'
 
 require './noaa_weather'
 
@@ -10,7 +11,7 @@ get '/' do
 end
 
 get '/:zip' do
-  zip = params['zip'].to_i
+  zip = params['zip']
   temps = NOAA.current_weather(zip)
   @zip = zip
   @temps = temps

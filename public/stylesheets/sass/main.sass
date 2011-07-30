@@ -11,27 +11,31 @@ body
 canvas
   width: 60px
   height: 25px
+
 #main
   width: 550px
   height: 100%
   margin: 0px auto
   h1
-    @include fontdef($mainfont, 300%)
+    @include fontdef($mainfont, 340%)
     margin-top: 5%
-    margin-left: 10%
   h2
     @include fontdef($mainfont, 200%)
     text-align: right
     width: 535px
+    margin-bottom: 10px
+    span
+      vertical-align: bottom
     input
-      @include fontdef($mainfont, 150%)
+      @include fontdef($mainfont, 120%)
       color: $blue
       border: none
-      border-bottom: 1px dashed $blue
-      width: 250px
+      border-bottom: 1px dashed #ddd
+      width: 200px
       text-align: center
     input:focus
       outline: none
+      border-bottom-color: $blue
   ul
     li
       width: 535px
@@ -50,3 +54,11 @@ canvas
         @include fontdef($subfont, 200%)
         float: right
         text-align: right
+  #footer
+    @include fontdef($subfont, 80%)
+    margin-top: 70px
+    text-align: center
+    a, a:visited
+      color: #000
+      
+      
