@@ -5,7 +5,8 @@ $(function () {
       var anglePercentage = (1-percent) * Math.PI + Math.PI;
       return {
         x : center.x + radius * Math.cos(anglePercentage),
-        y : center.y + radius * Math.sin(anglePercentage)
+        y : center.y + radius * Math.sin(anglePercentage),
+        angle: anglePercentage
       };
     },
 
@@ -36,7 +37,7 @@ $(function () {
       ctx.beginPath();
       ctx.lineWidth = 40;
       ctx.strokeStyle = skyColor;
-      ctx.arc(center.x, center.y, radius, 0, Math.PI, true);
+      ctx.arc(center.x, center.y, radius, 0, p.angle, true);
       ctx.stroke();
       ctx.closePath();
 
