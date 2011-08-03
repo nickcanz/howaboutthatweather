@@ -10,8 +10,8 @@
       %h2 
         %form{ :type => "POST", :action => "/" }
           %span &hellip; in
-          %input{ :type => :text, :id => "zip", :name => "zip", 
-                  :placeholder => "     Zip Code", :value => @zip }
+          %input{ :type => :text, :id => "query", :name => "query", 
+                  :placeholder => "Location", :value => @query }
 
       - if @temps != nil
         %ul

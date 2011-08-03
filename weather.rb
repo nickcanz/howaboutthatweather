@@ -6,14 +6,25 @@ require 'rdiscount'
 require './noaa_weather'
 
 get '/' do
-  redirect "/#{params['zip']}" unless params['zip'] == nil
+  redirect "/#{params['query']}" unless params['query'] == nil
   haml :index
 end
 
-get '/:zip' do
-  zip = params['zip']
-  temps = NOAA.current_weather(zip)
-  @zip = zip
+get '/:query' do
+
+  query = params['query']
+
+  yql_query = NOAA.yql(%{
+    select * from geo.places where text='#{query}'
+  })
+  center = yql_query["query"]["results"]["place"].first["centroid"]
+
+  temps = NOAA.current_weather({
+    :lat => center["latitude"],
+    :lng => center["longitude"]
+  })
+
+  @query = query
   @temps = temps
   @dateformat = "%a  %b %d"
   haml :index

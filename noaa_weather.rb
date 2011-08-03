@@ -3,19 +3,43 @@ require 'rubygems'
 require 'nokogiri'
 require 'rest_client'
 require 'date'
+require 'net/http'
+require 'json'
 
 module NOAA
   WEATHER_URL = 'http://www.weather.gov/forecasts/xml/sample_products/browser_interface/ndfdXMLclient.php'
 
-  def current_weather(zip)
+  #http://erikeldridge.wordpress.com/2010/02/18/1st-attempt-at-a-ruby-yql-utility-function/
+  def yql(query)
+      uri = "http://query.yahooapis.com/v1/public/yql"
+      response = Net::HTTP.post_form( URI.parse( uri ), {
+        'q' => query,
+        'format' => 'json'
+      })
+
+      json = JSON.parse( response.body )
+      return json
+  end
+  module_function :yql
+
+  def current_weather(query)
+
+    params = {
+      :product      => 'time-series',
+      :begin        => DateTime.now.to_s,
+      :end          => (DateTime.now + 3).to_s,
+      :appt         => 'appt',
+    }
+
+    if query.length == 1  then
+      params[:zipCodeList] = query[:zip]
+    else
+      params[:lat] = query[:lat]
+      params[:lon] = query[:lng]
+    end
+
     response = RestClient.get WEATHER_URL, {
-      :params => {
-        :zipCodeList  => zip,
-        :product      => 'time-series',
-        :begin        => DateTime.now.to_s,
-        :end          => (DateTime.now + 3).to_s,
-        :appt         => 'appt',
-      }
+      :params => params
     }
 
     parsed_resp = Nokogiri::XML(response)
