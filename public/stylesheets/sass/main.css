@@ -19,8 +19,6 @@ canvas {
     text-align: right;
     width: 535px;
     margin-bottom: 10px; }
-    #main h2 span {
-      vertical-align: bottom; }
     #main h2 input {
       font-family: "Lobster", serif;
       font-size: 120%;
