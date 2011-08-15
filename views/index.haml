@@ -13,19 +13,21 @@
           %input{ :type => :text, :id => "query", :name => "query", 
                   :placeholder => "     location", :value => @query }
 
-      - if @temps != nil
+      - if @weather_data != nil
         %ul
           - @current = ""
-          - for temp in @temps
-            - if @current != temp[:time].strftime(@dateformat)
+          - for datum in @weather_data
+            - if @current != datum[:time].strftime(@dateformat)
               %li.day 
                 %pre
-                  %span= temp[:time].strftime(@dateformat) 
+                  %span= datum[:time].strftime(@dateformat) 
             %li.data
-              %canvas{ "data-hour" => temp[:time].strftime("%H") }
-              %span.time= temp[:time].strftime("%H:%M") 
-              %span.temp= temp[:temp]
-            - @current = temp[:time].strftime(@dateformat)
+              %canvas{ "data-hour" => datum[:time].strftime("%H") }
+              %span.time= datum[:time].strftime("%H:%M") 
+              - @cond = datum[:conditions]
+              %span.condition= "#{@cond[:coverage]} #{@cond[:intensity]} #{@cond[:weathertype]}"
+              %span.temp= datum[:temp]
+            - @current = datum[:time].strftime(@dateformat)
       #footer
         :markdown
           Built by Nick Canzoneri, [email](canzoneri.nicholas@gmail.com) or [twitter](https://twitter.com/#!/ac3522).

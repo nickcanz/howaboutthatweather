@@ -11,21 +11,16 @@ get '/' do
 end
 
 get '/:query' do
-
   query = params['query']
+  center = NOAA.geocode(query)
 
-  yql_query = NOAA.yql(%{
-    select * from geo.places where text='#{query}'
-  })
-  center = yql_query["query"]["results"]["place"].first["centroid"]
-
-  temps = NOAA.current_weather({
+  weather_data = NOAA.current_weather({
     :lat => center["latitude"],
     :lng => center["longitude"]
   })
 
   @query = query
-  @temps = temps
+  @weather_data = weather_data
   @dateformat = "%a  %b %d"
   haml :index
 end

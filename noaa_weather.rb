@@ -10,25 +10,30 @@ module NOAA
   WEATHER_URL = 'http://www.weather.gov/forecasts/xml/sample_products/browser_interface/ndfdXMLclient.php'
 
   #http://erikeldridge.wordpress.com/2010/02/18/1st-attempt-at-a-ruby-yql-utility-function/
-  def yql(query)
+  def geocode(query)
+      yql_query = %{
+        select * from geo.places where text='#{query}'
+      }
+
       uri = "http://query.yahooapis.com/v1/public/yql"
-      response = Net::HTTP.post_form( URI.parse( uri ), {
-        'q' => query,
-        'format' => 'json'
+      response = Net::HTTP.post_form( URI.parse(uri), {
+        'q'       => yql_query,
+        'format'  => 'json'
       })
 
       json = JSON.parse( response.body )
-      return json
+      center = json["query"]["results"]["place"].first["centroid"]
+      return center
   end
-  module_function :yql
+  module_function :geocode
 
   def current_weather(query)
-
     params = {
-      :product      => 'time-series',
-      :begin        => DateTime.now.to_s,
-      :end          => (DateTime.now + 3).to_s,
-      :appt         => 'appt',
+      :product  => 'time-series',
+      :begin    => DateTime.now.to_s,
+      :end      => (DateTime.now + 3).to_s,
+      :appt     => 'appt',
+      :wx       => :wx,
     }
 
     if query.length == 1  then
@@ -50,12 +55,24 @@ module NOAA
     temps = parsed_resp.css("temperature[type=apparent] value").map do |temp_elem|
       temp_elem.content
     end
-    zipped = times.zip(temps)
+
+    weather_conds = parsed_resp.css("weather-conditions value").map do |weather_elem|
+      intensity = weather_elem.attr('intensity')
+      intensity = "" unless intensity != 'none'
+      {
+        :coverage => weather_elem.attr('coverage'),
+        :intensity => intensity,
+        :weathertype => weather_elem.attr('weather-type'),
+      }
+    end
+
+    zipped = times.zip(temps, weather_conds)
 
     dict = zipped.map do |z|
       {
         :time => z[0],
         :temp => z[1],
+        :conditions => z[2],
       }
     end
 
