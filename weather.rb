@@ -15,8 +15,8 @@ get '/:query' do
   center = NOAA.geocode(query)
 
   weather_data = NOAA.current_weather({
-    :lat => center["latitude"],
-    :lng => center["longitude"]
+    :lat => center["lat"],
+    :lng => center["long"]
   })
 
   @query = query

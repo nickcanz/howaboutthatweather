@@ -13,7 +13,7 @@
           %input{ :type => :text, :id => "query", :name => "query", 
                   :placeholder => "     location", :value => @query }
 
-      - if @weather_data != nil
+      - if !@weather_data.nil?
         %ul
           - @current = ""
           - for datum in @weather_data
@@ -25,13 +25,14 @@
               %canvas{ "data-hour" => datum[:time].strftime("%H") }
               %span.time= datum[:time].strftime("%H:%M") 
               - @cond = datum[:conditions]
-              %span.condition= "#{@cond[:coverage]} #{@cond[:intensity]} #{@cond[:weathertype]}"
+              -if !@cond.nil?
+                %span.condition= "#{@cond[:coverage]} #{@cond[:intensity]} #{@cond[:weathertype]}"
               %span.temp= datum[:temp]
             - @current = datum[:time].strftime(@dateformat)
       #footer
         :markdown
           Built by Nick Canzoneri, [email](canzoneri.nicholas@gmail.com) or [twitter](https://twitter.com/#!/ac3522).
-            
+
           Code available on [Github](https://github.com/ac3522/howaboutthatweather). 
-            
+
           Powered by [NOAA](http://www.weather.gov/forecasts/xml/rest.php).

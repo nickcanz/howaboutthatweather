@@ -12,7 +12,9 @@ module NOAA
   #http://erikeldridge.wordpress.com/2010/02/18/1st-attempt-at-a-ruby-yql-utility-function/
   def geocode(query)
       yql_query = %{
-        select * from geo.places where text='#{query}'
+        use 'http://github.com/yql/yql-tables/raw/master/weather/weather.woeid.xml' as weather;
+        select * from weather where w in (
+        select woeid from geo.places where text="#{query}");
       }
 
       uri = "http://query.yahooapis.com/v1/public/yql"
@@ -22,7 +24,7 @@ module NOAA
       })
 
       json = JSON.parse( response.body )
-      center = json["query"]["results"]["place"].first["centroid"]
+      center = json["query"]["results"]["rss"][0]["channel"]["item"]
       return center
   end
   module_function :geocode
