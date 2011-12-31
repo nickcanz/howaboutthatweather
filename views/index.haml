@@ -13,7 +13,7 @@
           %input{ :type => :text, :id => "query", :name => "query", 
                   :placeholder => "     location", :value => @query }
 
-      - if !@weather_data.nil?
+      - unless @weather_data.nil?
         %ul
           - @current = ""
           - for datum in @weather_data
@@ -33,6 +33,4 @@
         :markdown
           Built by Nick Canzoneri, [email](canzoneri.nicholas@gmail.com) or [twitter](https://twitter.com/#!/ac3522).
 
-          Code available on [Github](https://github.com/ac3522/howaboutthatweather). 
-
-          Powered by [NOAA](http://www.weather.gov/forecasts/xml/rest.php).
+          Code available on [Github](https://github.com/ac3522/howaboutthatweather).
