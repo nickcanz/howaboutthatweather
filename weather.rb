@@ -32,6 +32,6 @@ class Weather
       Weather.new(data_args)
     end
 
-    forecasted_weather << current_weather
+    forecasted_weather.unshift(current_weather)
   end
 end

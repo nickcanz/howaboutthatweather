@@ -15,20 +15,14 @@
 
       - unless @weather_data.nil?
         %ul
-          - @current = ""
-          - for datum in @weather_data
-            - if @current != datum[:time].strftime(@dateformat)
-              %li.day 
-                %pre
-                  %span= datum[:time].strftime(@dateformat) 
+          - for weather in @weather_data
+            %li.day 
+              %pre
+                %span= weather.time
             %li.data
-              %canvas{ "data-hour" => datum[:time].strftime("%H") }
-              %span.time= datum[:time].strftime("%H:%M") 
-              - @cond = datum[:conditions]
-              -if !@cond.nil?
-                %span.condition= "#{@cond[:coverage]} #{@cond[:intensity]} #{@cond[:weathertype]}"
-              %span.temp= datum[:temp]
-            - @current = datum[:time].strftime(@dateformat)
+              %canvas{ "data-hour" => 12 }
+              %span.condition= weather.conditions
+              %span.temp= weather.temp
       #footer
         :markdown
           Built by Nick Canzoneri, [email](canzoneri.nicholas@gmail.com) or [twitter](https://twitter.com/#!/ac3522).
