@@ -1,2 +1,2 @@
-require './howaboutthatweather_app.rb'
+require './howaboutthatweather.rb'
 run Sinatra::Application
