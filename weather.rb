@@ -4,6 +4,10 @@ require 'date'
 class Weather
   attr_accessor :temp, :conditions, :time
 
+  def self.city
+    @@city
+  end
+
   def initialize args
     @temp = args[:temp]
     @conditions = args[:conditions]
@@ -12,6 +16,8 @@ class Weather
 
   def self.create_from_xml xml_response_str
     xml_doc = Nokogiri::XML(xml_response_str)
+
+    @@city = xml_doc.at_css("city").attr('data')
 
     current_elem = xml_doc.at_css("current_conditions")
     current_args = {

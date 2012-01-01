@@ -16,7 +16,7 @@ get '/:query' do
   query = params['query']
 
   weather_data = get_weather query
-  @query = query
+  @query = Weather.city
   @weather_data = weather_data
   haml :index
 end
