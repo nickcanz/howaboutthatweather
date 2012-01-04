@@ -1,29 +1,39 @@
 !!! 5
-%html
-  %head
-    %title How about that Weather?
-    = haml :head
-    %script{ :src => 'javascript/main.js', :type => 'text/javascript' }
-  %body
-    #main
-      %h1 How about that Weather?
-      %h2 
-        %form{ :type => "POST", :action => "/" }
-          %span &hellip; in
-          %input{ :type => :text, :id => "query", :name => "query", 
-                  :placeholder => "     location", :value => @query }
+= erb :conditional
+%head
+  %title How about that Weather?
+  %meta{ :name => 'viewport', :content => 'width=device-width' }
+  %meta{ :charset => 'utf-8' }
 
-      - unless @weather_data.nil?
-        %ul
-          - for weather in @weather_data
-            %li.day 
-              %pre
-                %span= weather.time
-            %li.data
-              %canvas{ "data-hour" => 12 }
-              %span.condition= weather.conditions
-              %span.temp= weather.temp
-      #footer
+  %link{'rel' => 'stylesheet', 'href' => 'stylesheets/foundation/foundation.css', 'type' => 'text/css'}
+  %link{'rel' => 'stylesheet', 'href' => 'stylesheets/howaboutthatweather.css', 'type' => 'text/css'}
+  /[if let IE 9]
+    %link{'rel' => 'stylesheet', 'href' => 'stylesheets/foundation/ie.css', 'type' => 'text/css'}
+    %script{ :type => 'text/javascript', :src => 'javascript/html5shim.js' }
+
+%body
+  #main
+    .row
+      %h1.twelve.phone-four.columns.align-center How about that Weather?
+    .row
+      %h2.twelve.phone-four.columns.align-center &hellip; in
+    %form{ :type => "POST", :action => "/" }
+      .row
+        .twelve.phone-four.columns
+          %input.input-text.oversize{ :type => :text, :id => "query", :name => "query",
+            :placeholder => "location", :value => @query }
+
+  - unless @weather_data.nil?
+    %ul
+      - for weather in @weather_data
+        %li.day.row
+          .twelve.phone-four.columns= weather.time
+        %li.data.row
+          %canvas.three.phone-one.columns{ "data-hour" => 12 }
+          %span.condition.three.phone-one.columns= weather.conditions
+          %span.temp.six.phone-two.columns= weather.temp
+    #footer.row
+      .twelve.phone-four.columns
         :markdown
           Built by Nick Canzoneri, [email](canzoneri.nicholas@gmail.com) or [twitter](https://twitter.com/#!/ac3522).
 
