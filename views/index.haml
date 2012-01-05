@@ -31,7 +31,7 @@
         %li.data.row
           %canvas.three.phone-one.columns{ "data-hour" => 12 }
           %span.condition.three.phone-one.columns= weather.conditions
-          %span.temp.six.phone-two.columns= weather.temp
+          %span.temp.six.phone-two.columns= "#{weather.low} - #{weather.high}"
     #footer.row
       .twelve.phone-four.columns
         :markdown
