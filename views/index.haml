@@ -5,6 +5,8 @@
   %meta{ :name => 'viewport', :content => 'width=device-width' }
   %meta{ :charset => 'utf-8' }
 
+  %link{'rel' => 'stylesheet', 'href' => 'http://fonts.googleapis.com/css?family=Lobster&v2', 'type' => 'text/css' }
+  %link{'rel' => 'stylesheet', 'href' => 'http://fonts.googleapis.com/css?family=Tienne&v2', 'type' => 'text/css' }
   %link{'rel' => 'stylesheet', 'href' => 'stylesheets/foundation/foundation.css', 'type' => 'text/css'}
   %link{'rel' => 'stylesheet', 'href' => 'stylesheets/howaboutthatweather.css', 'type' => 'text/css'}
   /[if let IE 9]
@@ -12,15 +14,15 @@
     %script{ :type => 'text/javascript', :src => 'javascript/html5shim.js' }
 
 %body
-  #main
+  #header
     .row
       %h1.twelve.phone-four.columns.align-center How about that Weather?
     .row
       %h2.twelve.phone-four.columns.align-center &hellip; in
     %form{ :type => "POST", :action => "/" }
       .row
-        .twelve.phone-four.columns
-          %input.input-text.oversize{ :type => :text, :id => "query", :name => "query",
+        .six.centered.phone-two.columns
+          %input.input-text{ :type => :text, :id => "query", :name => "query",
             :placeholder => "location", :value => @query }
 
   - unless @weather_data.nil?

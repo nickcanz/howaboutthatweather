@@ -1,6 +1,9 @@
 task :default => [:run]
 
 task :run do
-  `shotgun howaboutthatweather.rb&`
-  `open http://localhost:9393`
+  `shotgun howaboutthatweather.rb`
+end
+
+task :sass do
+  `sass ./public/stylesheets/howaboutthatweather.sass > ./public/stylesheets/howaboutthatweather.css`
 end
