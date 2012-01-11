@@ -1,7 +1,10 @@
 $blue: #5798f0
+$maroon: #85092D
 
 .align-center
   text-align: center
+.align-right
+  text-align: right
 #query
   margin: 0px auto
 #header
@@ -21,3 +24,17 @@ $blue: #5798f0
     &:focus
       outline: none
       border-bottom-color: $blue
+ul
+  font-size: 3rem
+  font-family: 'Tienne', sans-serif
+  li.data.row
+    margin-bottom: 3rem
+#footer
+  text-align: center
+.deg
+  &:after
+    content: "\00b0"
+.deg.high
+  color: $maroon
+.deg.low
+  color: $blue

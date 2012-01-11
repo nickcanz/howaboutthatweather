@@ -1,6 +1,9 @@
 .align-center {
   text-align: center; }
 
+.align-right {
+  text-align: right; }
+
 #query {
   margin: 0px auto; }
 
@@ -21,3 +24,21 @@
     #header input:focus {
       outline: none;
       border-bottom-color: #5798f0; }
+
+ul {
+  font-size: 3rem;
+  font-family: "Tienne", sans-serif; }
+  ul li.data.row {
+    margin-bottom: 3rem; }
+
+#footer {
+  text-align: center; }
+
+.deg:after {
+  content: "\00b0"; }
+
+.deg.high {
+  color: #85092d; }
+
+.deg.low {
+  color: #5798f0; }

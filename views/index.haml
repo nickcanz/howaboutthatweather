@@ -21,22 +21,22 @@
       %h2.twelve.phone-four.columns.align-center &hellip; in
     %form{ :type => "POST", :action => "/" }
       .row
-        .six.centered.phone-two.columns
+        .six.centered.phone-two.columns.push-one-phone
           %input.input-text{ :type => :text, :id => "query", :name => "query",
             :placeholder => "location", :value => @query }
 
   - unless @weather_data.nil?
     %ul
       - for weather in @weather_data
-        %li.day.row
-          .twelve.phone-four.columns= weather.time
         %li.data.row
-          %canvas.three.phone-one.columns{ "data-hour" => 12 }
-          %span.condition.three.phone-one.columns= weather.conditions
-          %span.temp.six.phone-two.columns= "#{weather.low} - #{weather.high}"
+          .align-right.three.phone-one.columns= weather.time
+          .align-center.six.phone-two.columns= weather.conditions
+          .temp.three.phone-one.columns
+            %span.deg.low= weather.low
+            %span.deg.high= weather.high
     #footer.row
       .twelve.phone-four.columns
         :markdown
-          Built by Nick Canzoneri, [email](canzoneri.nicholas@gmail.com) or [twitter](https://twitter.com/#!/ac3522).
+          Built by Nick Canzoneri, [email](mailto:canzoneri.nicholas@gmail.com) or [twitter](https://twitter.com/#!/ac3522).
 
           Code available on [Github](https://github.com/ac3522/howaboutthatweather).
