@@ -1,6 +1,0 @@
-source 'http://rubygems.org'
-gem 'sinatra'
-gem 'nokogiri'
-gem 'haml'
-gem 'rdiscount'
-gem 'rest-client'
